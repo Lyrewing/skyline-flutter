@@ -18,9 +18,10 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
+        //splashColor: Colors.deepPurple[600]
       ),
-      home: MyHomePage(title: 'Flutter Demo Home app'),
+      home: MyHomePage(title: 'Flutter Home'),
     );
   }
 }
@@ -44,18 +45,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,47 +54,114 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Scaffold(
+
+    var scaffold = Scaffold(
+      backgroundColor: Colors.grey[100],
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              accountName: Text('Feng Zhanyuan'),
+              accountEmail: Text('iven.feng@outlook.com'),
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: NetworkImage("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=648886844,2783634220&fm=26&gp=0.jpg"),
+
+              ),
+              decoration: BoxDecoration(
+                color: Colors.deepPurple[400],
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(Colors.deepPurple[400].withOpacity(0.6), BlendMode.hardLight),
+                  image: NetworkImage("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1544950224191&di=64ebdbb4fe167a2aa9dae00dae04b338&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F1e30e924b899a9016d6c9cab17950a7b0308f5d6.jpg")
+                )
+                
+              ), 
+
+            ),
+            ListTile(
+              title: Text('消息',textAlign: TextAlign.right),
+              trailing: Icon(Icons.message,color: Colors.black26,size: 22.0,),
+              onTap: ()=>Navigator.pop(context),
+              ), 
+            ListTile(
+              title: Text('最爱',textAlign: TextAlign.right),
+              trailing: Icon(Icons.favorite,color: Colors.black26,size: 22.0,),
+              onTap: ()=>Navigator.pop(context),
+              ), 
+            ListTile(
+              title: Text('设置',textAlign: TextAlign.right),
+              trailing: Icon(Icons.settings,color: Colors.black26,size: 22.0,),
+              onTap: ()=>Navigator.pop(context),
+              ), 
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.explore),
+            title: Text("explore")
+        ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.history),
+            title: Text("history")
+        ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            title: Text("list")
+        ),
+           BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            title: Text("my")
+        ),
+        
+        ],
+      ),
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
+        elevation: 0.0,
+        actions: <Widget>[
+          IconButton(
+          icon: Icon(Icons.search),
+          tooltip: 'Navigration',
+          onPressed: ()=>debugPrint(""),
+          ),
+        ],
+        bottom: TabBar(
+          unselectedLabelColor: Colors.black26,
+          indicatorSize: TabBarIndicatorSize.label,
+          indicatorWeight: 1.0,
+          indicatorColor: Colors.black54,
+          tabs: <Widget>[
+            Tab(icon: Icon(Icons.local_florist)),
+            Tab(icon: Icon(Icons.local_airport)),
+            Tab(icon: Icon(Icons.local_bar)),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+
+      body: TabBarView(
+        children: <Widget>[
+          Icon(Icons.local_florist,size: 128,color: Colors.black12,),
+          Icon(Icons.local_airport,size: 128,color: Colors.black12,),
+          Icon(Icons.local_bar,size: 128,color: Colors.black12,)
+        ],
+      ),
+
     );
+
+    return DefaultTabController(
+      length: 3,
+      child: scaffold,
+      
+    );
+
+   
+
+
   }
 }
