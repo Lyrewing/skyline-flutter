@@ -13,21 +13,21 @@ class _SearchBar extends State<SearchBar> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-      height: 30.0,
+      height: 35.0,
       child: Row(
         children: <Widget>[
           Expanded(
             child: FlatButton.icon(
               onPressed: () => {},
-              icon: Icon(Icons.search, color: Colors.grey, size: 12.0),
-              label: Text("坚果R1摄像头", style: TextStyle(color: Colors.grey)),
+              icon: Icon(Icons.search, color: Colors.grey[600], size: 12.0),
+              label: Text("坚果R1摄像头", style: TextStyle(color: Colors.grey[600])),
             ),
           ),
 
           Container(
             decoration: new BoxDecoration(
                 border: new BorderDirectional(
-                    start: new BorderSide(color: Colors.grey, width: 1.0))),
+                    start: new BorderSide(color: Colors.grey[600], width: 1.0))),
             height: 14.0,
             width: 1.0,
           ),
@@ -35,14 +35,14 @@ class _SearchBar extends State<SearchBar> {
           Container(
               child: new FlatButton.icon(
             onPressed: () => {},
-            icon: new Icon(Icons.border_color, color: Colors.grey, size: 14.0),
-            label: new Text("提问", style: new TextStyle(color: Colors.grey)),
+            icon: new Icon(Icons.border_color, color: Colors.grey[600], size: 14.0),
+            label: new Text("提问", style: new TextStyle(color: Colors.grey[600])),
           ))
         ],
       ),
       decoration: new BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-          color: Colors.white),
+          borderRadius: const BorderRadius.all(Radius.circular(18.0)),
+          color: Colors.white54),
     );
   }
 }
