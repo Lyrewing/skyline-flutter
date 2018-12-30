@@ -19,8 +19,8 @@ class _SearchBar extends State<SearchBar> {
           Expanded(
             child: FlatButton.icon(
               onPressed: () => {},
-              icon: Icon(Icons.search, color: Colors.grey[600], size: 12.0),
-              label: Text("坚果R1摄像头", style: TextStyle(color: Colors.grey[600])),
+              icon: Icon(Icons.search, color: Colors.grey[700], size: 12.0),
+              label: Text("坚果R1摄像头", style: TextStyle(color: Colors.grey[700])),
             ),
           ),
 
